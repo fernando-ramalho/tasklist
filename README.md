@@ -1,5 +1,5 @@
 # tasklist
-Este é o repositório para o aplicativo tasklist
+Este é o repositório para a aplicação de exemplo tasklist
 
 # Task List - Client-Side: Angular + Server Side: Web API 
 
@@ -27,18 +27,13 @@ Pretendeu-se atender aos seguintes requisitos funcionais:
 * Deletar uma task;
 * Cada tarefa possuirá as seguintes informações: título, status, descrição, datas de criação, edição, remoção e conclusão. 
 
-## CorMVC Philosophy
+## Arquitetura da solução
 
-Building frameworks in jQuery (or any other language for that matter) is very
-new to me; I don't claim to be any good at it. In fact, when I started looking 
-into jQuery-based frameworks, I had no intention of creating my own. As I
-started to do my research, however, I quickly encountered two major problems 
-with what was avilable:
-
+Como se trata de uma aplicação pequena de demonstração foi utilizada com parcimônia conceitos de arquitetura e padrões de desenvolvimento, pois a proposta não tinha a pretensão de ser modelo de orientação mas sim de atender aos requisitos exigidos com a maior simplicidade e clareza possível para permitir fácil compreensão porém sem prescindir da utilização de alguns padrões e tecnologias mais consideradas mais complexas.
 
 * __Aplicação Cliente__: Esta aplicação utilizou em seu fron-end o framework Angular 6.
 * __Servidor Web__: Como servido web foi utilizado o IIS ([Internet Information Services][4]) da microsoft como servidor back-end.  
-* __Tecnologia no Back-end__: Como primeira camada de resposta para as requisições da aplicação cliente foi utilizada ASP.NET Web API que é uma plataforma poderosa para criar APIs que exponham serviços e dados. Como HTTP é simples e flexível ele tem a capacidade de atingir uma ampla variedade de clientes, incluindo navegadores, dispositivos móveis e aplicativos de desktop tradicionais.
+* __Tecnologia no Back-end__: Como primeira camada de resposta para as requisições da aplicação cliente foi utilizada [ASP.NET Web API][8] que é uma plataforma poderosa para criar APIs que exponham serviços e dados. Como HTTP é simples e flexível ele tem a capacidade de atingir uma ampla variedade de clientes, incluindo navegadores, dispositivos móveis e aplicativos de desktop tradicionais.
 * __Acesso a dados__. Na camada de acesso a dados foi utilizado o Entity Framework 6 como mecanismo de [O/RM][7]. Para facilitar o processo de mapeamento dos objetos de banco de dados para o modelo de classes foi utilizada a extensão [Entity Framework Power Tools ][5] que fornece funcionalidades no Visual Studio para realizar a engenharia reversa do modelo de dados. 
 * __Autenticação e autorização__. Para a autenticação e autorização foi utilizada a plataforma [Auth0][6] para facilitar a incorporação de uma segurança básica e admnistração dos perfis de usuários. 
 
@@ -49,3 +44,4 @@ with what was avilable:
 [5]: https://msdn.microsoft.com/en-us/library/jj593170(v=vs.113).aspx
 [6]: https://auth0.com/
 [7]: https://en.wikipedia.org/wiki/Object-relational_mapping
+[8]: https://docs.microsoft.com/en-us/aspnet/web-api/
