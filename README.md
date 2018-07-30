@@ -12,7 +12,8 @@ __Demo:__ [View the online demo][3]
 Proposta de aplicação de exemplo para apresentação em etapa de processo seletivo que contempla as seguintes características:
 
 * Versionamento com Git;
-* Camada de frontend independente do backend (API REST + frontend);
+* Camada de frontend independente do backend (frontend);
+* Camada de backend com API REST 
 * Utilização de frameworks Angular e Bootstrap;
 * Utilização de frameworks para acesso a dados EntityFramework;
 * Utilização de um padrões de desenvolvimento mínimo, nomenclaturas, arquitetura;
@@ -29,7 +30,7 @@ Pretendeu-se atender aos seguintes requisitos funcionais:
 
 ## Arquitetura da solução
 
-Como se trata de uma aplicação pequena de demonstração foi utilizada com parcimônia conceitos de arquitetura e padrões de desenvolvimento, pois a proposta não tinha a pretensão de ser modelo de orientação mas sim de atender aos requisitos exigidos com a maior simplicidade e clareza possível para permitir fácil compreensão porém sem prescindir da utilização de alguns padrões e tecnologias mais consideradas mais complexas.
+Como se trata de uma aplicação pequena de demonstração foi utilizada com parcimônia conceitos de arquitetura e padrões de desenvolvimento, pois a proposta não tinha a pretensão de ser modelo de orientação mas sim de atender aos requisitos exigidos com a maior simplicidade e clareza possível para permitir fácil compreensão porém sem prescindir da utilização de alguns padrões e tecnologias consideradas mais complexas.
 
 * __Aplicação Cliente__: Esta aplicação utilizou em seu fron-end o framework Angular 6.
 * __Servidor Web__: Como servido web foi utilizado o IIS ([Internet Information Services][4]) da microsoft como servidor back-end.  
