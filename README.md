@@ -30,13 +30,13 @@ Pretendeu-se atender aos seguintes requisitos funcionais:
 
 ## Arquitetura da solução
 
-Como se trata de uma aplicação pequena de demonstração foi utilizada com parcimônia conceitos de arquitetura e padrões de desenvolvimento, pois a proposta não tinha a pretensão de ser modelo de orientação mas sim de atender aos requisitos exigidos com a maior simplicidade e clareza possível para permitir fácil compreensão porém sem prescindir da utilização de alguns padrões e tecnologias consideradas mais complexas.
+Como se trata de uma aplicação pequena de demonstração foi utilizado com parcimônia conceitos de arquitetura e padrões de desenvolvimento, pois a proposta não tinha a pretensão de ser modelo de referência mas sim de atender aos requisitos exigidos com a maior simplicidade e clareza possível para permitir fácil compreensão porém sem prescindir da utilização de alguns padrões e tecnologias consideradas mais complexas quando fosse o caso.
 
 * __Aplicação Cliente__: Esta aplicação utilizou em seu fron-end o framework Angular 6.
 * __Servidor Web__: Como servido web foi utilizado o IIS ([Internet Information Services][4]) da microsoft como servidor back-end.  
 * __Tecnologia no Back-end__: Como primeira camada de resposta para as requisições da aplicação cliente foi utilizada [ASP.NET Web API][8] que é uma plataforma poderosa para criar APIs que exponham serviços e dados. Como HTTP é simples e flexível ele tem a capacidade de atingir uma ampla variedade de clientes, incluindo navegadores, dispositivos móveis e aplicativos de desktop tradicionais.
 * __Acesso a dados__. Na camada de acesso a dados foi utilizado o Entity Framework 6 como mecanismo de [O/RM][7]. Para facilitar o processo de mapeamento dos objetos de banco de dados para o modelo de classes foi utilizada a extensão [Entity Framework Power Tools ][5] que fornece funcionalidades no Visual Studio para realizar a engenharia reversa do modelo de dados. 
-* __Autenticação e autorização__. Para a autenticação e autorização foi utilizada a plataforma [Auth0][6] para facilitar a incorporação de uma segurança básica e admnistração dos perfis de usuários. 
+* __Autenticação e autorização__. Para a autenticação e autorização foi utilizada a plataforma [Auth0][6] para facilitar a incorporação de uma segurança básica e administração dos perfis de usuários. 
 
 [1]: https://www.linkedin.com/in/fernando-ramalho-barbosa/
 [2]: https://plus.google.com/112001880695380308855?rel=author
