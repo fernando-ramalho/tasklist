@@ -8,11 +8,13 @@ by [Fernando Ramalho][1] (on [Google+][2])
 __*NOTE: Este projeto é somente para demonstração .*__
 
 __Demo:__ [View the online demo][3]
+* usuários: user@supero.com e admin@supero.com;
+* senha: Supero123
 
 Proposta de aplicação de exemplo para apresentação em etapa de processo seletivo que contempla as seguintes características:
 
 * Versionamento com Git;
-* Camada de frontend independente do backend (frontend);
+* Camada de front-end independente do back-end;
 * Camada de backend com API REST 
 * Utilização de frameworks Angular e Bootstrap;
 * Utilização de frameworks para acesso a dados EntityFramework;
