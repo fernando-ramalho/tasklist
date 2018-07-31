@@ -23,7 +23,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/themes/tasklist.material.theme.scss",
+              "src/assets/themes/tasklist.theme.css"
             ],
             "scripts": []
           },

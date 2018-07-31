@@ -4,7 +4,12 @@
 
 export const environment = {
     production: false,
-    baseHref: '/dev/'
+    callbackURL: 'http://local2.tasklistsupero.io/#/callback',
+    API_URL: 'http://localhost:3001', //'http://local.tasklistsupero.webapi.io/api',
+    grid: {
+        ROWS_PER_PAGE: 10,
+        MAX_SIZE: 10
+    },
 };
 
 /*

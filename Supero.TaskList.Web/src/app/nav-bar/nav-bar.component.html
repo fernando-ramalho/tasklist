@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" class="navbar navbar-default">
+    <span>Task List</span>
+
+    <span class="fill-space"></span>
+
+    <button mat-button routerLink="/">Home</button>
+    <div *ngIf="auth.isAuthenticated()" >
+        <button mat-button routerLink="/profile">Profile</button>
+        <button mat-button outerLink="/ping">Ping</button>
+        <button mat-button id="qsLogoutBtn" (click)="auth.logout()">Log Out</button>
+    </div>
+
+    <button mat-button id="qsLoginBtn" *ngIf="!auth.isAuthenticated()" (click)="auth.login()">Log In</button>
+</mat-toolbar>

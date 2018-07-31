@@ -91,30 +91,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dist\supero-task-list-web\3rdpartylicenses.txt" />
-    <Content Include="dist\supero-task-list-web\favicon.ico" />
-    <Content Include="dist\supero-task-list-web\index.html" />
-    <Content Include="dist\supero-task-list-web\main.3b1571855b589059f935.js" />
-    <Content Include="dist\supero-task-list-web\polyfills.2f4a59095805af02bd79.js" />
-    <Content Include="dist\supero-task-list-web\runtime.a66f828dca56eeb90e02.js" />
-    <Content Include="dist\supero-task-list-web\styles.34c57ab7888ec1573f9c.css" />
     <Content Include="e2e\protractor.conf.js" />
-    <Content Include="Global.asax" />
     <Content Include="src\app\app.component.css" />
     <Content Include="src\app\app.component.html" />
+    <Content Include="src\app\callback\callback.component.css" />
+    <Content Include="src\app\callback\callback.component.html" />
+    <Content Include="src\app\core\modal-content\modal-content.component.css" />
+    <Content Include="src\app\core\modal-content\modal-content.component.html" />
+    <Content Include="src\app\core\modal-error\modal-error.component.css" />
+    <Content Include="src\app\core\modal-error\modal-error.component.html" />
+    <Content Include="src\app\home\home.component.css" />
+    <Content Include="src\app\home\home.component.html" />
+    <Content Include="src\app\nav-bar\nav-bar.component.css" />
+    <Content Include="src\app\nav-bar\nav-bar.component.html" />
+    <Content Include="src\app\ping\ping.component.css" />
+    <Content Include="src\app\ping\ping.component.html" />
+    <Content Include="src\app\profile\profile.component.css" />
+    <Content Include="src\app\profile\profile.component.html" />
+    <Content Include="src\app\task-list\task-list.component.css" />
+    <Content Include="src\app\task-list\task-list.component.html" />
+    <Content Include="src\assets\loading.svg" />
     <Content Include="src\favicon.ico" />
     <Content Include="src\index.html" />
     <Content Include="src\karma.conf.js" />
     <Content Include="src\styles.css" />
+    <Content Include="src\assets\themes\tasklist.theme.css" />
     <Content Include="Web.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -129,7 +135,8 @@
     <Content Include="src\tsconfig.app.json" />
     <Content Include="src\tsconfig.spec.json" />
     <Content Include="src\tslint.json" />
-    <Content Include="dist\supero-task-list-web\Web.config" />
+    <Content Include="src\assets\themes\tasklist.material.theme.scss" />
+    <Content Include="src\assets\themes\color-theme.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -139,16 +146,52 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="e2e\src\app.e2e-spec.ts" />
     <TypeScriptCompile Include="e2e\src\app.po.ts" />
     <TypeScriptCompile Include="src\app\app.component.spec.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\app.routes.ts" />
+    <TypeScriptCompile Include="src\app\callback\callback.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\callback\callback.component.ts" />
+    <TypeScriptCompile Include="src\app\core\base-component.ts" />
+    <TypeScriptCompile Include="src\app\core\base-form-control.ts" />
+    <TypeScriptCompile Include="src\app\core\base-form-group.ts" />
+    <TypeScriptCompile Include="src\app\core\core.module.ts" />
+    <TypeScriptCompile Include="src\app\core\i-base-pagination.ts" />
+    <TypeScriptCompile Include="src\app\core\loader.service.ts" />
+    <TypeScriptCompile Include="src\app\core\modal-content\modal-content.component.ts" />
+    <TypeScriptCompile Include="src\app\core\modal-error\modal-error.component.ts" />
+    <TypeScriptCompile Include="src\app\custom-material-module\custom-material-module.module.spec.ts" />
+    <TypeScriptCompile Include="src\app\custom-material-module\custom-material-module.module.ts" />
+    <TypeScriptCompile Include="src\app\directives\directives.module.ts" />
+    <TypeScriptCompile Include="src\app\directives\focus.directive.ts" />
+    <TypeScriptCompile Include="src\app\directives\validation-message.directive.ts" />
+    <TypeScriptCompile Include="src\app\home\home.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\home\home.component.ts" />
+    <TypeScriptCompile Include="src\app\models\error-message.ts" />
+    <TypeScriptCompile Include="src\app\models\TaskList.ts" />
+    <TypeScriptCompile Include="src\app\nav-bar\nav-bar.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\nav-bar\nav-bar.component.ts" />
+    <TypeScriptCompile Include="src\app\ping\ping.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\ping\ping.component.ts" />
+    <TypeScriptCompile Include="src\app\ping\ping.module.spec.ts" />
+    <TypeScriptCompile Include="src\app\ping\ping.module.ts" />
+    <TypeScriptCompile Include="src\app\profile\profile.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\profile\profile.component.ts" />
+    <TypeScriptCompile Include="src\app\services\auth.service.spec.ts" />
+    <TypeScriptCompile Include="src\app\services\auth.service.ts" />
+    <TypeScriptCompile Include="src\app\services\auth0-variables.ts" />
+    <TypeScriptCompile Include="src\app\services\http.service.spec.ts" />
+    <TypeScriptCompile Include="src\app\services\http.service.ts" />
+    <TypeScriptCompile Include="src\app\task-list\task-list.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\task-list\task-list.component.ts" />
+    <TypeScriptCompile Include="src\app\task-list\task-list.module.spec.ts" />
+    <TypeScriptCompile Include="src\app\task-list\task-list.module.ts" />
+    <TypeScriptCompile Include="src\app\task-list\task-list.service.spec.ts" />
+    <TypeScriptCompile Include="src\app\task-list\task-list.service.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />

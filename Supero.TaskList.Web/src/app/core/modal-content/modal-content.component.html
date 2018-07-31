@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div innerHTML="{{body}}" class="modal-body">
+</div>
+<div class="modal-footer" *ngIf="footer != (null || undefined)" [style.height.px]="45">
+  <button type="button" class="btn btn-primary btn-sm" (click)="bsModalRef.hide()">{{footer}}</button>
+</div>
+<div class="modal-footer" *ngIf="confirm">    
+    <button type="button" class="btn btn-primary btn-sm" (click)="onConfirm()">Yes</button>
+    <button type="button" class="btn btn-default  btn-sm" (click)="onCancel()">No</button>  
+</div>

@@ -1,0 +1,13 @@
+<div [formGroup]="childForm">
+    <select name="TaskList"
+            class="form-control input-sm"
+            formControlName="TaskList"
+            [ngModel]="value" (ngModelChange)="change($event)"
+            placeholder="TaskList"
+            validationMessageControlName="TaskList"
+            validationMessageRequired="Lista de tarefa é obrigatória."
+            validationMessage>
+        <option [ngValue]="undefined">Selecione</option>
+        <option *ngFor="let item of Items" [ngValue]="item.Id">{{item.Titulo}}</option>
+    </select>
+</div>

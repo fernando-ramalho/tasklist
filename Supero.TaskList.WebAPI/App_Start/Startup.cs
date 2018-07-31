@@ -1,10 +1,12 @@
+using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.DataHandler.Encoder;
 using Microsoft.Owin.Security.Jwt;
-using Microsoft.Owin.Security.OAuth;
 using Owin;
-using System;
-using System.Threading.Tasks;
+using System.Configuration;
+using Auth0.Owin;
+using Microsoft.IdentityModel.Tokens;
+
+[assembly: OwinStartup(typeof(Supero.TaskList.WebAPI.Startup))]
 
 namespace Supero.TaskList.WebAPI
 {
@@ -12,31 +14,6 @@ namespace Supero.TaskList.WebAPI
     {
         public void Configuration(IAppBuilder app)
         {
-            //Dot.Net Core
-            //services.AddAuthentication(options =>
-            //{
-            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //}
-
-            //public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-            //{
-            //    if (env.IsDevelopment())
-            //    {
-            //        app.UseDeveloperExceptionPage();
-            //    }
-            //    else
-            //    {
-            //        app.UseExceptionHandler("/Home/Error");
-            //    }
-
-            //    app.UseStaticFiles();
-
-            //    // 2. Enable authentication middleware
-            //    app.UseAuthentication();
-
-            //}
-
 
             ConfigureOAuth(app);
 
@@ -46,34 +23,21 @@ namespace Supero.TaskList.WebAPI
 
         public void ConfigureOAuth(IAppBuilder app)
         {
-            //var issuer = "https://fbarbosa.auth0.com/";
-            //var audiences = "http://www.tasklistsupero.somee.com/tasklistwebapi";
-            //var secret = "";
+            var domain = $"https://{ConfigurationManager.AppSettings["Auth0Domain"]}/";
+            var apiIdentifier = ConfigurationManager.AppSettings["Auth0ApiIdentifier"];
 
-            var issuer = "https://fbarbosa.auth0.com/";
-            var audiences = "http://localhost3001";
-            var secret = "zzJJhGNli7-h0moA1xNDPHiLUFmY7mCMnQPZkXm20YRiwNemc5hu9U7IMs3azWBt";
-                         //"11yAZKirJuqEHSl8XUk1zbhcv7PA4nQgCz_aAfulPNzjqCeXl6o7zv8m2W7DSlI3";
-
-            // Api controllers with an [Authorize] attribute will be validated with JWT
+            var keyResolver = new OpenIdConnectSigningKeyResolver(domain);
             app.UseJwtBearerAuthentication(
                 new JwtBearerAuthenticationOptions
                 {
                     AuthenticationMode = AuthenticationMode.Active,
-                    AllowedAudiences = new string[] { audiences },
-                    IssuerSecurityKeyProviders = new IIssuerSecurityKeyProvider[]
+                    TokenValidationParameters = new TokenValidationParameters()
                     {
-                        new  SymmetricKeyIssuerSecurityKeyProvider(issuer, secret)
-                    },
-                    Provider = new OAuthBearerAuthenticationProvider
-                    {
-                        OnValidateIdentity = context =>
-                        {
-                            //context.Ticket.Identity.AddClaim(new System.Security.Claims.Claim("newCustomClaim", "newValue"));
-                            return Task.FromResult<object>(null);
-                        }
-                    }
 
+                        ValidAudience = apiIdentifier,
+                        ValidIssuer = domain,
+                        IssuerSigningKeyResolver = (token, securityToken, kid, parameters) => keyResolver.GetSigningKey(kid)
+                    }
                 });
         }
     }

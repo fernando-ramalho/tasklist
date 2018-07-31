@@ -1,0 +1,19 @@
+<div class="modal-header" [style.background-color]="'#a94442'">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{errorMessage?.Message}}<br><br>
+    <a (click)="exibirDetalhe()" [ngSwitch]="showDetails" [style.cursor]="'pointer'">
+        <span *ngSwitchCase="false">Ver detalhes</span>
+        <span *ngSwitchCase="true">Ocultar detalhes</span>
+    </a><br>
+    <ng-container *ngIf="showDetails">
+        {{errorMessage?.MessageDetail}}
+    </ng-container>
+  </div>
+  <div class="modal-footer text-center">
+    <button type="button" class="btn btn-primary  btn-sm" (click)="close()"  [style.background-color]="'#a94442'">Ok</button>
+  </div>
