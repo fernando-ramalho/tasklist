@@ -28,7 +28,8 @@ Pretendeu-se atender aos seguintes requisitos funcionais:
 * Marcar e desmarcar o status de concluído;
 * Editar o conteúdo da task;
 * Deletar uma task;
-* Cada tarefa possuirá as seguintes informações: título, status, descrição, datas de criação, edição, remoção e conclusão. 
+* Cada tarefa possuirá as seguintes informações: título, status, descrição, datas de criação, 
+edição, remoção e conclusão. 
 ```
 ## Arquitetura da solução
 
