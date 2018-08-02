@@ -8,8 +8,8 @@ by [Fernando Ramalho][1] (on [Google+][2])
 __*NOTE: Este projeto é somente para demonstração .*__
 
 __Demo:__ [View the online demo][3]
-* usuários: user@supero.com e admin@supero.com;
-* senha: Supero123
+* usuários: `user@supero.com` e `admin@supero.com`;
+* senha: `Supero123`
 
 Proposta de aplicação de exemplo para apresentação em etapa de processo seletivo que contempla as seguintes características:
 
