@@ -12,7 +12,7 @@ __Demo:__ [View the online demo][3]
 * senha: `Supero123`
 
 Proposta de aplicação de exemplo para apresentação em etapa de processo seletivo que contempla as seguintes características:
-
+```
 * Versionamento com Git;
 * Camada de front-end independente do back-end;
 * Camada de backend com API REST 
@@ -21,15 +21,15 @@ Proposta de aplicação de exemplo para apresentação em etapa de processo sele
 * Utilização de um padrões de desenvolvimento mínimo, nomenclaturas, arquitetura;
 * Aplicação de conceitos fortes, design patterns e divisão da arquitetura quando entendido como necessário.
 * Estilização básica do frontend, responsividade e usabilidade;
-
+```
 Pretendeu-se atender aos seguintes requisitos funcionais: 
-
+```
 * Adicionar novas tarefas;
 * Marcar e desmarcar o status de concluído;
 * Editar o conteúdo da task;
 * Deletar uma task;
 * Cada tarefa possuirá as seguintes informações: título, status, descrição, datas de criação, edição, remoção e conclusão. 
-
+```
 ## Arquitetura da solução
 
 Como se trata de uma aplicação pequena de demonstração foi utilizado com parcimônia conceitos de arquitetura e padrões de desenvolvimento, pois a proposta não tinha a pretensão de ser modelo de referência mas sim de atender aos requisitos exigidos com a maior simplicidade e clareza possível para permitir fácil compreensão porém sem prescindir da utilização de alguns padrões e tecnologias consideradas mais complexas quando fosse o caso.
