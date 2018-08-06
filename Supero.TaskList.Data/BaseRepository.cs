@@ -19,6 +19,7 @@ namespace Supero.TaskList.Data
         #region Constructor
         protected BaseRepository() {
             CreateDbContext();
+            DbSet = this.DbContext.Set<TEntity>();
         }
 
         protected BaseRepository(DbContext dbContext)
@@ -172,6 +173,13 @@ namespace Supero.TaskList.Data
             Delete(entity);
         }
 
+        /// <summary>
+        /// Save pending changes to the database
+        /// </summary>
+        public void Commit()
+        {
+            this.DbContext.SaveChanges();
+        }
         #endregion
 
         #endregion

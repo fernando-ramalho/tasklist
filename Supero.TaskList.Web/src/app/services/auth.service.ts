@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AUTH_CONFIG } from './auth0-variables';
 import { Router } from '@angular/router';
-
+import { LoaderService } from './../core/loader.service';
 import * as auth0 from 'auth0-js';
 
 (window as any).global = window;
@@ -20,7 +20,7 @@ export class AuthService {
 
     userProfile: any;
 
-    constructor(public router: Router) { }
+    constructor(public router: Router, private loaderService: LoaderService) { }
 
     public login(): void {
         this.auth0.authorize();
@@ -31,8 +31,10 @@ export class AuthService {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
                 this.router.navigate(['/home']);
+                this.loaderService.display(false);
             } else if (err) {
                 this.router.navigate(['/home']);
+                this.loaderService.display(false);
                 console.log(err);
                 alert(`Error: ${err.error}. Check the console for further details.`);
             }

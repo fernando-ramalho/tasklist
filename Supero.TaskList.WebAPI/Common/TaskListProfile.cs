@@ -14,10 +14,12 @@ namespace Supero.TaskList.WebAPI
             //Todas as strings nulas serão mapeadas para vazias.
             CreateMap<string, string>().ConvertUsing(s => s ?? string.Empty);
 
+            CreateMap<TaskListModel, Entity.TaskList>();
             CreateMap<Entity.TaskList, TaskListModel>()
                 .ForMember(target => target.Itens, member => member.MapFrom(source => source.TaskListItems))
                 .ForMember(target => target.StatusTaskList, member => member.MapFrom(source => (TaskListEnumModel.StatusTaskList)source.IdStatus)); ;
 
+            CreateMap<Entity.TaskListItem, TaskListItemModel>();
             CreateMap<TaskListItemModel, Entity.TaskListItem>().ForMember(target => target.TaskList, member => member.Ignore());
         }  
     }

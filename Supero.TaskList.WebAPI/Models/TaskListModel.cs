@@ -7,6 +7,10 @@ namespace Supero.TaskList.WebAPI
 {
     public class TaskListModel
     {
+        public TaskListModel()
+        {
+            Itens = new List<TaskListItemModel>();
+        }
         /// <summary>
         /// Identificador único da lista de tarefas
         /// </summary>

@@ -1,0 +1,10 @@
+﻿<div class="task-form">
+    <mat-form-field>
+        <input matInput [(ngModel)]="task.Titulo" placeholder="Título">
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+        <input matInput [(ngModel)]="task.Descricao" placeholder="Descrição">
+    </mat-form-field>
+    <button mat-button mat-raised-button color="primary" (click)="addTask()">Incluir</button>
+</div>

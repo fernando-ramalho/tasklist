@@ -1,24 +1,23 @@
-import { Injectable } from "@angular/core";
-import { ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, XHRBackend, Headers } from "@angular/http";
+ï»¿import { Injectable } from "@angular/core";
+//import { ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, XHRBackend, Headers } from "@angular/http";
+import { HttpClient, HttpErrorResponse, HttpHandler, HttpHeaders, HttpResponseBase, HttpResponse, HttpRequest } from '@angular/common/http';
+import { RequestOptionsArgs } from './RequestOptionsArgs';
 import { environment } from "../../environments/environment";
-import { Observable } from 'rxjs/Rx';
+//import { Observable } from 'rxjs/Rx';
+import { Observable, Subject } from 'rxjs';
+
+import { map, take, catchError } from 'rxjs/operators';
+import { of, from, throwError } from 'rxjs';
 import { ErrorMessage } from "../models/error-message";
 
-//@Injectable({
-//  providedIn: 'root'
-//})
-
-@Injectable()
-export class HttpService extends Http {
-    constructor(backend: ConnectionBackend, defaultOptions: RequestOptions) {
-        super(backend, defaultOptions);
+@Injectable({ providedIn: 'root' })
+export class HttpService extends HttpClient {
+    constructor(handler: HttpHandler) {
+        super(handler);
     }
 
-    request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-        return super.request(url, options);
-    }
 
-    get(url: string, options?: RequestOptionsArgs): Observable<Response> {
+    _get(url: string, options?: RequestOptionsArgs): Observable<HttpResponse<Object>> {
         let reqOptions = this.getRequestOptionArgs(options);
         url = this.updateUrl(url, reqOptions);
         try {
@@ -28,26 +27,26 @@ export class HttpService extends Http {
         }
     }
 
-    post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+    _post(url: string, body: any, options?: RequestOptionsArgs): Observable<HttpResponse<Object>> {
         let reqOptions = this.getRequestOptionArgs(options);
         url = this.updateUrl(url, reqOptions);
         return super.post(url, body, reqOptions);
     }
 
-    put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+    _put(url: string, body: any, options?: RequestOptionsArgs): Observable<HttpResponse<Object>> {
         let reqOptions = this.getRequestOptionArgs(options);
         url = this.updateUrl(url, reqOptions);
         return super.put(url, body, reqOptions);
     }
 
-    delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
+    _delete(url: string, options?: RequestOptionsArgs): Observable<HttpResponse<Object>> {
         let reqOptions = this.getRequestOptionArgs(options);
         url = this.updateUrl(url, reqOptions);
         return super.delete(url, reqOptions);
     }
 
     private updateUrl(req: string, options: RequestOptionsArgs) {
-        let contentType = options.headers.get('Content-Type');
+        let contentType = (<HttpHeaders>options.headers).get('Content-Type');
         let partialPath = "/api";
 
         if (contentType && (contentType.indexOf('text/plain') >= 0 || contentType.indexOf('text/html') >= 0)) {
@@ -69,11 +68,13 @@ export class HttpService extends Http {
 
     private getRequestOptionArgs(options?: RequestOptionsArgs): RequestOptionsArgs {
         if (options == null) {
-            options = new RequestOptions();
+            options = new RequestOptionsArgs();
+            options.observe = 'response';
         }
+
         if (options.headers == null) {
-            options.headers = new Headers();
-            options.headers.append('Content-Type', 'application/json');
+            options.headers = new HttpHeaders();
+            //options.headers.append('Content-Type', 'application/json');
         }
 
         return options;
@@ -96,96 +97,92 @@ export class BaseService {
     }
 
     GetAll(url?: string, options?: RequestOptionsArgs): Observable<any> {
-        return this.http.get(url || this.url, options).map(this.extractData)
-            .catch(error => handleError(error));
+        return this.http._get(url || this.url, options).pipe(map(this.extractData), catchError(error => handleError(error)));
     }
 
     ListAll(url?: string, options?: RequestOptionsArgs): Promise<any> {
-        return this.http.get(url || this.url, options).map(this.extractData)
-            .catch(error => handleError(error)).toPromise();
+        return this.http._get(url || this.url, options).pipe(map(this.extractData), catchError(error => handleError(error))).toPromise();
     }
 
     GetById(id: number, url?: string, options?: RequestOptionsArgs): Observable<any> {
-        return this.http.get(`${url || this.url}/${id}`, options)
-            .map(this.extractData)
-            .catch(error => handleError(error));
+        return this.http._get(`${url || this.url}/${id}`, options)
+            .pipe(map(this.extractData), catchError(error => handleError(error)));
     }
 
     GetByParams(params: string, url?: string): Observable<any> {
-        return this.http.get(`${url || this.url}/${params}`).map(data => <any>data.json())
-            .catch(error => handleError(error));
+        return this.http._get(`${url || this.url}/${params}`).pipe(map(data => <any>data.body), catchError(error => handleError(error)));
     }
 
     Save(entity: any, url?: string): Observable<any> {
         if (entity.Id == null || entity.Id == undefined || entity.Id == 0) {
-            return this.http.post(url || this.url, entity).map(data => <any>data.json())
-                .catch(error => handleError(error));
+            return this.http._post(url || this.url, entity).pipe(map(data => <any>data.body), catchError(error => handleError(error)));
         } else {
-            return this.http.put(`${url || this.url}/${entity.Id}`, entity).map(data => <any>data.json())
-                .catch(error => handleError(error));
+            return this.http._put(`${url || this.url}/${entity.Id}`, entity).pipe(map(data => <any>data.body), catchError(error => handleError(error)));
         }
     }
 
+    Insert(entity: any, url?: string): Observable<any> {
+        return this.http._post(`${url || this.url}`, entity).pipe(map(data => <any>data.body), catchError(error => handleError(error)));
+    }
+
     Update(entity: any, url?: string): Observable<any> {
-        return this.http.put(`${url || this.url}`, entity).map(data => <any>data.json())
-            .catch(error => handleError(error));
+        return this.http._put(`${url || this.url}/${entity.Id}`, entity).pipe(map(data => <any>data.body), catchError(error => handleError(error)));
     }
 
     Delete(id: number, url?: string): Observable<any> {
-        return this.http
-            .delete(`${url || this.url}/${id}`)
-            .map(data => <any>data.json())
-            .catch(error => handleError(error));
+        return this.http._delete(`${url || this.url}/${id}`).pipe(map(data => <any>data.body), catchError(error => handleError(error)));
     }
 
     GetByFilter(params: string, url?: string): Observable<any> {
-        return this.http.get(`${url || this.url}?${params}`).map(data => <any>data.json())
-            .catch(error => handleError(error));
+        return this.http._get(`${url || this.url}?${params}`).pipe(map(data => <any>data.body), catchError(error => handleError(error)));
     }
 
     ListByFilter(params: string, url?: string): Promise<any> {
-        return this.http.get(`${url || this.url}?${params}`).map(data => <any>data.json())
-            .catch(error => handleError(error)).toPromise();
+        return this.http._get(`${url || this.url}?${params}`).pipe(map(data => <any>data.body), catchError(error => handleError(error))).toPromise();
     }
 
     Upload(content: any, url?: string): Observable<any> {
-        let options = new RequestOptions();
-        options.headers = new Headers();
-        return this.http.post(`${url || this.url}`, content, options)
-            .map(data => <any>data.json())
-            .catch(error => handleError(error));
+        let options = new RequestOptionsArgs();
+        options.headers = new HttpHeaders();
+        return this.http._post(`${url || this.url}`, content, options).pipe(map(data => <any>data.body), catchError(error => handleError(error)));
     }
 
-    private extractData(res: Response) {
+    private extractData(res: any) {
         let body: any = "";
-        if (res.headers && res.headers.get('Content-Type').indexOf('text/html') < 0)
-            body = res.json();
-        else
-            body = res.text();
+        let resp = res as HttpResponse<any>;
+        if (resp.headers && resp.headers.get('Content-Type').indexOf('text/html') < 0)
+            body = resp.body;
+
         return body;
     }
 }
 
+interface IMessageResponse {
+    message: string;
+}
 
-export function handleError(error: Response | any) {
+interface IMessageDetailResponse {
+    MessageDetail: string;
+}
+export function handleError(error: HttpErrorResponse | any) {
     let customError = new ErrorMessage();
 
-    if (error instanceof Response) {
+    if (error.error instanceof ErrorEvent) {
         customError.StatusCode = error.status;
 
         try {
-            customError.Message = error.json().Message;
+            customError.Message = (error.error as IMessageResponse).message;
         } catch (error) {
-            customError.Message = JSON.stringify(error.json());
+            customError.Message = JSON.stringify(error);
         }
 
         if (!customError.Message)
-            customError.Message = `Erro ao realizar a operação.`;
+            customError.Message = `Erro ao realizar a operaÃ§Ã£o.`;
 
         try {
-            customError.MessageDetail = error.json().MessageDetail;
+            customError.MessageDetail = JSON.stringify(error);
         } catch (error) {
-            customError.MessageDetail = 'Detalhe indisponível';
+            customError.MessageDetail = 'Detalhe indisponÃ­vel';
         }
 
         if (!customError.MessageDetail) {
@@ -200,9 +197,9 @@ export function handleError(error: Response | any) {
     }
 
     if (customError.StatusCode == 401 || customError.StatusCode == 403) {
-        customError.Message = "Autorização foi negada para esta requisição.";
+        customError.Message = "AutorizaÃ§Ã£o foi negada para esta requisiÃ§Ã£o.";
         customError.RedirectUrl = "/";
     }
 
-    return Observable.throw(customError);
+    return throwError(customError);
 }

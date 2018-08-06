@@ -5,8 +5,8 @@
 
     <button mat-button routerLink="/">Home</button>
     <div *ngIf="auth.isAuthenticated()" >
-        <button mat-button routerLink="/profile">Profile</button>
-        <button mat-button outerLink="/ping">Ping</button>
+        <button mat-button routerLink="/profile">Perfil</button>
+        <button mat-button routerLink="/ping">Tarefas</button>
         <button mat-button id="qsLogoutBtn" (click)="auth.logout()">Log Out</button>
     </div>
 

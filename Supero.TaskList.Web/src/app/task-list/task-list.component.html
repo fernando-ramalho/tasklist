@@ -1,13 +1,28 @@
-<div [formGroup]="childForm">
-    <select name="TaskList"
-            class="form-control input-sm"
-            formControlName="TaskList"
-            [ngModel]="value" (ngModelChange)="change($event)"
-            placeholder="TaskList"
-            validationMessageControlName="TaskList"
-            validationMessageRequired="Lista de tarefa � obrigat�ria."
-            validationMessage>
-        <option [ngValue]="undefined">Selecione</option>
-        <option *ngFor="let item of Items" [ngValue]="item.Id">{{item.Titulo}}</option>
-    </select>
+﻿<div [formGroup]="childForm">
+    <app-task-list-form (taskAdded)="taskAddedHandler($event)"></app-task-list-form>
+
+    <mat-card>
+        <mat-card-title>Task List</mat-card-title>
+        <mat-card-subtitle>Todas as suas tarefas num único lugar</mat-card-subtitle>
+
+        <mat-list>
+            <div *ngFor="let task of tasks; trackBy: $index">
+                <div class="task-item heroes" *ngIf="isNull(task.DataExclusao)">
+                    <span class="badge">{{ task.Id || -1 }}</span>
+                    <p><small><strong>{{ task.DataCriacao | date: 'short' }}</strong></small></p>
+                    <a (click)="edit(task)">
+                        <span *ngIf="task!==editTask">{{ task.Descricao }}</span>
+                        <input *ngIf="task===editTask" name="Descricao" formControlName="Descricao" [(ngModel)]="task.Descricao" (blur)="update()" (keyup.enter)="update()" focus>
+                    </a>
+                    <button class="delete" mat-button mat-raised-button
+                            color="primary" (click)="deleteTask(task)">
+                        Delete
+                    </button>
+                </div>
+            </div>
+            <div class="task-item" *ngIf="tasks?.length == 0">
+                <p>Não há tarefas pendentes</p>
+            </div>
+        </mat-list>
+    </mat-card>
 </div>

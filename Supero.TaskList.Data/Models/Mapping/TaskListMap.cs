@@ -12,7 +12,6 @@ namespace Supero.TaskList.Data.Models.Mapping
 
             // Properties
             this.Property(t => t.IdUsuario)
-                .IsRequired()
                 .HasMaxLength(50);
 
             this.Property(t => t.Titulo)
@@ -30,7 +29,7 @@ namespace Supero.TaskList.Data.Models.Mapping
             this.Property(t => t.Titulo).HasColumnName("Titulo");
             this.Property(t => t.Descricao).HasColumnName("Descricao");
             this.Property(t => t.IdStatus).HasColumnName("IdStatus");
-            this.Property(t => t.DataCricao).HasColumnName("DataCricao");
+            this.Property(t => t.DataCriacao).HasColumnName("DataCriacao");
             this.Property(t => t.DataAlteracao).HasColumnName("DataAlteracao");
             this.Property(t => t.DataExclusao).HasColumnName("DataExclusao");
             this.Property(t => t.DataConclusao).HasColumnName("DataConclusao");

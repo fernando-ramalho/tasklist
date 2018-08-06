@@ -1,11 +1,13 @@
-import { DirectivesModule } from './../directives/directives.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { DirectivesModule } from './../directives/directives.module';
+import { CustomMaterialModule } from './../custom-material-module/custom-material-module.module';
+
+
 import { TaskListComponent } from "./task-list.component";
 import { TaskListService } from "./task-list.service";
-import { Http, ConnectionBackend } from '@angular/http';
-import { HttpService } from "./../services/http.service";
+import { TaskListFormComponent } from './task-list-form/task-list-form.component';
 
 
 @NgModule({
@@ -13,17 +15,12 @@ import { HttpService } from "./../services/http.service";
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        DirectivesModule
+        DirectivesModule,
+        CustomMaterialModule
     ],
-    declarations: [
-        TaskListComponent
-    ],
-    exports: [
-        TaskListComponent
-    ],
-    providers: [
-        TaskListService, HttpService
-    ]
+    declarations: [TaskListComponent, TaskListFormComponent],
+    exports: [TaskListComponent],
+    providers: [TaskListService]
 
 })
 export class TaskListModule { }

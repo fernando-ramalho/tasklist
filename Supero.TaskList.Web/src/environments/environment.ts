@@ -5,11 +5,12 @@
 export const environment = {
     production: false,
     callbackURL: 'http://local2.tasklistsupero.io/#/callback',
-    API_URL: 'http://localhost:3001', //'http://local.tasklistsupero.webapi.io/api',
+    API_URL: 'http://localhost:3001',//'http://local.tasklistsupero.webapi.io',
     grid: {
         ROWS_PER_PAGE: 10,
         MAX_SIZE: 10
     },
+    DATE_TIME_MINVALUE: "0001-01-01T00:00:00" 
 };
 
 /*

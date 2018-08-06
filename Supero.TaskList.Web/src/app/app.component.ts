@@ -11,8 +11,15 @@ export class AppComponent implements OnInit  {
     title = 'supero-task-list-web';
     showLoader: boolean;
 
-    constructor(public auth: AuthService, private loaderService: LoaderService, private changeDetectionRef: ChangeDetectorRef) {
-        auth.handleAuthentication();
+    constructor(public auth: AuthService,
+                private loaderService: LoaderService,
+                private changeDetectionRef: ChangeDetectorRef) {
+        try {
+            this.loaderService.display(true);
+            auth.handleAuthentication();
+        } catch (error) {
+            this.loaderService.display(false);
+        }
     }
 
     ngOnInit() {

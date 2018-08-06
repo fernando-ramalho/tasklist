@@ -34,6 +34,47 @@
     align-items: center;    
 }
 
+.validation-tooltip {
+    visibility: hidden;
+    background-color: #ebccd1;
+    color: #a94442;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 80%;
+    margin-left: 20%;
+    text-align: center;
+}
+
+.validation-tooltip::after {
+    content: " ";
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #ebccd1 transparent transparent transparent;
+}
+
+.validation-tooltip.on {
+    visibility: visible;
+}
+
+
+.task-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #eee;
+}
+
+button.delete {
+  float: right;
+  top: -60px;
+}
 
 
 /*!

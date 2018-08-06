@@ -12,7 +12,7 @@ namespace Supero.TaskList.Data.Models
         }
 
         public SuperoTaskListContext()
-            : base("Name=SuperoTaskListContext")
+            : base("SuperoTaskListContext")
         {
         }
 

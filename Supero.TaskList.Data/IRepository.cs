@@ -24,6 +24,7 @@ namespace Supero.TaskList.Data
         void Update(TEntity entity);
         void Delete(TEntity entity);
         void Delete(Int64 id);
+        void Commit();
         #endregion
     }
 }

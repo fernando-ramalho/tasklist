@@ -15,7 +15,7 @@ namespace Supero.TaskList.Data.Models
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public byte IdStatus { get; set; }
-        public System.DateTime DataCricao { get; set; }
+        public System.DateTime DataCriacao { get; set; }
         public Nullable<System.DateTime> DataAlteracao { get; set; }
         public Nullable<System.DateTime> DataExclusao { get; set; }
         public Nullable<System.DateTime> DataConclusao { get; set; }

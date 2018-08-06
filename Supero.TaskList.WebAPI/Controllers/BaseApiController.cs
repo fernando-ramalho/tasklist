@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace Supero.TaskList.WebAPI
 {
-    [Authorize]
+    //[Authorize]
     public class BaseApiController : System.Web.Http.ApiController
     {
         #region Attributes & Properties

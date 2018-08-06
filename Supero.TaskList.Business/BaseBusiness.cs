@@ -52,20 +52,22 @@ namespace Supero.TaskList.Business
             try
             {
                 this.RepositoryInstance.Insert(entity);
+                this.RepositoryInstance.Commit();
                 return true;
             }
             catch (Exception ex)
             {
-                Logger.Error($"Erro ao incluir",ex);
+                Logger.Error($"Erro ao incluir", ex);
                 return false;
-             }
-            
+            }
+
         }
         public virtual bool Update(TEntity entity)
         {
             try
             {
-               this.RepositoryInstance.Update(entity);
+                this.RepositoryInstance.Update(entity);
+                this.RepositoryInstance.Commit();
                 return true;
             }
             catch (Exception ex)
@@ -80,6 +82,7 @@ namespace Supero.TaskList.Business
             try
             {
                 this.RepositoryInstance.Delete(id);
+                this.RepositoryInstance.Commit();
                 return true;
             }
             catch (Exception ex)
@@ -93,6 +96,7 @@ namespace Supero.TaskList.Business
             try
             {
                 this.RepositoryInstance.Delete(entity);
+                this.RepositoryInstance.Commit();
                 return true;
             }
             catch (Exception ex)
